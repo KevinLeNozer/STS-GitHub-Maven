@@ -3,6 +3,7 @@ package fr.openfoodfacts.readder.bo;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.Set;
 
 
 @Entity
@@ -16,11 +17,22 @@ public class Categorie {
     @Column(name = "categorieLib", length = 255, nullable = false, unique = true)
     private String categorieLib;
 
-    public Categorie() {
-    }
+    @OneToMany(mappedBy = "categorie")
+    private Set<Produit> produits;
 
     public Categorie(String categorieLib) {
         this.setCategorieLib(categorieLib);
+    }
+
+    public Categorie() {
+    }
+
+    public Set<Produit> getProduits() {
+        return produits;
+    }
+
+    public void setProduits(Set<Produit> produits) {
+        this.produits = produits;
     }
 
     public long getId() {

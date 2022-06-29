@@ -12,7 +12,7 @@ public class Ingredient {
     @GenericGenerator(name = "seqIngredient", strategy = "increment")
     private long id;
 
-    @Column(name = "ingredientLib", length = 255, nullable = false, unique = true)
+    @Column(name = "ingredientLib", length = 255, nullable = false)
     private String ingredientLib;
 
     public Ingredient() {

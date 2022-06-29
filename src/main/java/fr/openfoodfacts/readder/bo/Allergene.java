@@ -15,12 +15,13 @@ public class Allergene {
     @Column(name = "allergeneLib", length = 255, nullable = false, unique = true)
     private String allergeneLib;
 
+    public Allergene(String allergeneLib) {
+        this.allergeneLib = allergeneLib;
+    }
+
     public Allergene() {
     }
 
-    public Allergene(String allergeneLib) {
-        this.setAllergeneLib(allergeneLib);
-    }
 
     public long getId() {
         return id;

@@ -21,8 +21,16 @@ public class Produit {
     @JoinColumn(name = "allergene_id")
     Allergene allergene;
 
-    @Column(name = "scoreNutritonnel", length = 1, nullable = false, unique = false)
+    @Column(name = "scoreNutritonnel", length = 1, nullable = false)
     private String scoreNutritionnel;
+
+    public String getScoreNutritionnel() {
+        return scoreNutritionnel;
+    }
+
+    public void setScoreNutritionnel(String scoreNutritionnel) {
+        this.scoreNutritionnel = scoreNutritionnel;
+    }
 
     public Allergene getAllergene() {
         return allergene;

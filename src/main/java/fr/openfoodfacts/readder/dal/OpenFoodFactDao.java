@@ -1,10 +1,7 @@
 package fr.openfoodfacts.readder.dal;
 
 
-import fr.openfoodfacts.readder.bo.Categorie;
-import fr.openfoodfacts.readder.bo.Ingredient;
-import fr.openfoodfacts.readder.bo.Marque;
-import fr.openfoodfacts.readder.bo.Produit;
+import fr.openfoodfacts.readder.bo.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;

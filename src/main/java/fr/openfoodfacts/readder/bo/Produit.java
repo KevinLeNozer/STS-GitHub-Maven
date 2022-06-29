@@ -3,6 +3,7 @@ package fr.openfoodfacts.readder.bo;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "Produit")
@@ -17,11 +18,11 @@ public class Produit {
     @ManyToOne
     @JoinColumn(name = "marque_id")
     Marque marque;
-    @ManyToOne
+    @ManyToMany
     @JoinColumn(name = "allergene_id")
-    Allergene allergene;
+    private List<Allergene> allergenes;
 
-    @Column(name = "scoreNutritonnel", length = 1, nullable = false)
+    @Column(name = "scoreNutritonnel", nullable = false)
     private String scoreNutritionnel;
 
     public String getScoreNutritionnel() {
@@ -32,12 +33,12 @@ public class Produit {
         this.scoreNutritionnel = scoreNutritionnel;
     }
 
-    public Allergene getAllergene() {
-        return allergene;
+    public List<Allergene> getAllergenes() {
+        return allergenes;
     }
 
-    public void setAllergene(Allergene allergene) {
-        this.allergene = allergene;
+    public void setAllergenes(List<Allergene> allergenes) {
+        this.allergenes = allergenes;
     }
 
     public Marque getMarque() {

@@ -24,19 +24,26 @@ public class OpenFoodFactService implements OpenFoodFactServiceInterface {
         String[] columns = line.split(REGEX_DELIMITER);
 
         Produit produit = new Produit();
-        produit.setCategorie(new Categorie(columns[0]));
-        produit.setMarque(new Marque(columns[1]));
 
-        List<String> allergeneList =  new ArrayList<>();
+        if (columns.length == 29) {
+            produit.setCategorie(new Categorie(columns[0]));
+            produit.setMarque(new Marque(columns[1]));
+            produit.setScoreNutritionnel(columns[4]);
 
-        allergeneList.addAll(List.of(columns[28].split(",")));
-        for (String allergeneFromList : allergeneList) {
-            if (allergeneList.get(0) != ""){
-                Allergene allergene = new Allergene(allergeneList.get(0));
-                produit.getAllergenes().add(allergene);
+            List<String> allergeneList =  new ArrayList<>();
+            List<Allergene> allergenList2 = new ArrayList<>();
+
+            allergeneList.addAll(List.of(columns[28].split(",")));
+            for (String allergeneFromList : allergeneList) {
+                if (allergeneList.get(0) != ""){
+                    Allergene allergene = new Allergene(allergeneList.get(0));
+                    allergenList2.add(allergene);
+                }
             }
+            produit.setAllergenes(allergenList2);
+            return produit;
         }
-        return produit;
+        return null;
     }
 
     @Override

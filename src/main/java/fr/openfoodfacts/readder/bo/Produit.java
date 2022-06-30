@@ -56,4 +56,15 @@ public class Produit {
     public void setCategorie(Categorie categorie) {
         this.categorie = categorie;
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Produit{");
+        sb.append(", categorie=").append(categorie);
+        sb.append(", marque=").append(marque);
+        sb.append(", allergenes=").append(allergenes);
+        sb.append(", scoreNutritionnel='").append(scoreNutritionnel).append('\'');
+        sb.append('}');
+        return sb.toString();
+    }
 }

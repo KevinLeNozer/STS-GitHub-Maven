@@ -4,7 +4,6 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
-
 @Entity
 @Table(name = "Marque")
 public class Marque {
@@ -37,5 +36,13 @@ public class Marque {
 
     public void setMarqueLib(String marqueLib) {
         this.marqueLib = marqueLib;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Marque{");
+        sb.append("marqueLib='").append(marqueLib).append('\'');
+        sb.append('}');
+        return sb.toString();
     }
 }

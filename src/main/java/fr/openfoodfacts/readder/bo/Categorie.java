@@ -50,4 +50,12 @@ public class Categorie {
     public void setCategorieLib(String categorieLib) {
         this.categorieLib = categorieLib;
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Categorie{");
+        sb.append(", categorieLib='").append(categorieLib).append('\'');
+        sb.append('}');
+        return sb.toString();
+    }
 }

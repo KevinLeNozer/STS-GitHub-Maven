@@ -37,4 +37,12 @@ public class Ingredient {
     public void setIngredientLib(String ingredientLib) {
         this.ingredientLib = ingredientLib;
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Ingredient{");
+        sb.append("ingredientLib='").append(ingredientLib).append('\'');
+        sb.append('}');
+        return sb.toString();
+    }
 }

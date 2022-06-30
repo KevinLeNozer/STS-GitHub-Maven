@@ -2,7 +2,6 @@ package fr.openfoodfacts.readder;
 
 import fr.openfoodfacts.readder.bll.OpenFoodFactService;
 import fr.openfoodfacts.readder.bll.OpenFoodFactServiceInterface;
-import fr.openfoodfacts.readder.bo.Allergene;
 import fr.openfoodfacts.readder.bo.Produit;
 import fr.openfoodfacts.readder.dal.OpenFoodFactDao;
 
@@ -29,7 +28,7 @@ public class IntegrationOpenFoodFacts {
         OpenFoodFactDao dao = new OpenFoodFactDao(em);
         service = new OpenFoodFactService(dao);
 
-        try (Stream<String> stream = Files.lines(Path.of(ClassLoader.getSystemResource("C:\\Users\\kevin\\Desktop\\IdeaProjects\\traitement-fichier\\src\\main\\resources\\open-food-facts.csv").toURI()))) {
+        try (Stream<String> stream = Files.lines(Path.of(ClassLoader.getSystemResource("open-food-facts.csv").toURI()))) {
             em.getTransaction().begin();
             AtomicInteger counter = new AtomicInteger();
             stream.forEach(line -> {
@@ -37,14 +36,16 @@ public class IntegrationOpenFoodFacts {
                 // extraire du csv
                 Produit produit = service.read(line);
 
+                if (produit != null) {
+                    System.out.println(produit);
+                }
+
                 // enregister l'objet en base
-                service.save(produit);
+                //service.save(produit);
 
                 // on
                 if (counter.get() % BATCH_SIZE == 0) {
-                    System.out.println("flush! " + counter.get());
-                    em.flush();
-                    em.clear();
+                    //System.out.println("flush! " + counter.get());
                     em.getTransaction().commit();
                     em.getTransaction().begin();
                 }
@@ -53,11 +54,9 @@ public class IntegrationOpenFoodFacts {
             });
             em.getTransaction().commit();
 
-
         } catch (Exception e) {
             System.out.println(e.getMessage());
             throw e;
         }
-
     }
 }

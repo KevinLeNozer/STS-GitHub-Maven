@@ -1,6 +1,5 @@
 package fr.openfoodfacts.readder.dal;
 
-
 import fr.openfoodfacts.readder.bo.*;
 
 import javax.persistence.EntityManager;

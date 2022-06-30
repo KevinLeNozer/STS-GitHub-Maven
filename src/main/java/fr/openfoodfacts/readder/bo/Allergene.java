@@ -38,4 +38,12 @@ public class Allergene {
     public void setAllergeneLib(String allergeneLib) {
         this.allergeneLib = allergeneLib;
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Allergene{");
+        sb.append(", allergeneLib='").append(allergeneLib).append('\'');
+        sb.append('}');
+        return sb.toString();
+    }
 }
